@@ -447,6 +447,5 @@ Host GroupsและService Groups จะเป็นการแบ่งแย
 ![สกรีนช็อต_25660107_211859](https://user-images.githubusercontent.com/119097660/211155815-fe2c1aef-ba1b-4af1-a7a5-0917c71ba94d.png)
 
 หน้าNotifications จะแสดงการแจ้งเตือนผู้ติดต่อทั้งหมด
-<<<<<<< HEAD
 ![สกรีนช็อต_25660107_143253](https://user-images.githubusercontent.com/119097660/211155959-b88e2f3c-dabc-4545-8cb3-bbe7f32d491c.png)
 
