@@ -35,9 +35,6 @@ tar xzf nagioscore.tar.gz
 ```
  ![image](https://user-images.githubusercontent.com/119097663/210221636-6e1e4d42-5365-46cb-957a-28f0cf501c7b.png)
 
-3. รวบรวมซอฟต์แวร์ปัจจุบัน
-
-พิมพ์คำสั่ง cd /tmp/nagioscore-nagios-4.4.6/
 
 3. ติดตั้งซอฟต์แวร์ปัจจุบัน
 
