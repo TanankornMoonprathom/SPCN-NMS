@@ -314,3 +314,46 @@ systemctl restart nagios
 ![Services](https://user-images.githubusercontent.com/109591322/211142693-9f5ef465-e530-45c5-8425-8c52e90205dd.png)
 
 เสร็จสิ้นขั้นตอนการติดตั้งปลั๊กอินของ Nagios
+
+# Client
+## การติดตั้งใน Client ประกอบไปด้วย 
+* snmp, snmpd
+มีขั้นตอนในการติดตั้ง ตามลำดับ ดังนี้
+1. อัพเดท ubuntu และเริ่มติดตั้ง SNMP, SNMPD  
+```
+$ apt-get update
+$ apt-get install snmp snmpd libsnmp-dev 
+``` 
+2. เข้า file เพื่อกำหนด **agentAddress** และ **Community** มีขั้นตอนการทำงาน ดังนี้
+
+    2.1 เข้า file **snmpd.conf**
+    ```
+    $ sudo nano /etc/snmp/snmpd.conf
+    ``` 
+    2.2 แก้ไขไฟล์ snmpd.conf 
+
+    * กำหนด **agentAddress**
+
+        _ตัวอย่างการแก้ไข_
+        ```
+        agentAddress 127.0.0.1,172.31.1.206
+        //agentAddress IP-Localhost,IP-Client
+        ``` 
+
+    * กำหนด **Community**
+
+        _ตัวอย่างการแก้ไข_
+        ```
+        rocommunity SPcnCPE22 172.31.0.81 
+        //rocommunity  Community  IP-Server
+        ```
+        จากนั้นบันทึก file ด้วยคำสั่ง ``` ^X ``` และยืนยันการบันทึก ``` Y ``` ตามลำดับ
+3. restart และ check status การทำงานของ snmpd ตามลำดับ     /* อาจจะมีปรับปรุง*/
+    ```
+    $ systemctl restart snmpd 
+    $ systemcrl status snmpd
+    ```
+_ตัวอย่าง_ หน้าจอผลลัพธ์การทำงานของ systemctl restart และ status snmpd
+
+> ผลลัพธ์ restart และ status snmpd
+    ![restart-status-snmpd](https://user-images.githubusercontent.com/104758471/211152302-8aac16d7-5262-490e-bf80-27c2aafe2ef2.png)
