@@ -371,8 +371,8 @@ systemctl restart nagios
 $ apt-get update
 $ apt-get install snmp snmpd libsnmp-dev 
 ``` 
-2. เข้า file เพื่อกำหนด **agentAddress** และ **Community** มีขั้นตอนการทำงาน ดังนี้
-
+2. เข้า file เพื่อกำหนด **agentAddress** และกำหนดการมองเห็นของ **Community** มีขั้นตอนการทำงาน ดังนี้
+    
     2.1 เข้า file **snmpd.conf**
     ```
     $ sudo nano /etc/snmp/snmpd.conf
@@ -383,28 +383,33 @@ $ apt-get install snmp snmpd libsnmp-dev
 
         _ตัวอย่างการแก้ไข_
         ```
-        agentAddress 127.0.0.1,172.31.1.206
-        //agentAddress IP-Localhost,IP-Client
+        agentAddress 172.31.1.206,[::1]
+        //agentAddress IP-Client
         ``` 
 
-    * กำหนด **Community**
+    * กำหนดการมองเห็น **Community**
 
         _ตัวอย่างการแก้ไข_
         ```
-        rocommunity SPcnCPE22 172.31.0.81 
-        //rocommunity  Community  IP-Server
+        #Views
+        #arguments viewname included [oid]
+        #system + hrSystem groups only
+        view   systemonly  included   .1.3.6.1.2.1.1
+        view   systemonly  included   .1.3.6.1.2.1.25.1
+        //เพิ่มการมองเห็นของ Community SPcnCPE22//
+        view   systemonly  included   .1.3.6.1.4.1.2021.10.1.3.1  
         ```
         จากนั้นบันทึก file ด้วยคำสั่ง ``` ^X ``` และยืนยันการบันทึก ``` Y ``` ตามลำดับ
-3. restart และ check status การทำงานของ snmpd ตามลำดับ     /* อาจจะมีปรับปรุง*/
+3. restart และ check status การทำงานของ snmpd ตามลำดับ
     ```
     $ systemctl restart snmpd 
     $ systemcrl status snmpd
     ```
-_ตัวอย่าง_ หน้าจอผลลัพธ์การทำงานของ systemctl restart และ status snmpd
+_ตัวอย่าง หน้าจอผลลัพธ์การทำงานของ systemctl restart และ status snmpd_
 
 > ผลลัพธ์ restart และ status snmpd
     ![restart-status-snmpd](https://user-images.githubusercontent.com/104758471/211152302-8aac16d7-5262-490e-bf80-27c2aafe2ef2.png)
-    
+
 ## การอ่านผลของเครื่องมือ
 สามารถดูภาพรวมของHost StatusและService Status ผ่านหน้า Services 
 ![สกรีนช็อต_25660107_142419](https://user-images.githubusercontent.com/119097660/211141883-355bc75f-1721-4404-b695-9d2d9a0f2eb7.png)
