@@ -7,7 +7,7 @@
 | 2 | 116310400251-9 | นางสาวกาญจนา หรั่งเจริญ |https://github.com/KanchanaRangcharoen|
 | 3 | 116310462005-4 | นางสาวคีตะภัทร ภิบาล    |https://github.com/keta410|
 | 4 | 116310400485-3 | นายนาวิน ไชยเสนา      |https://github.com/nawinNC|
-| 5 | 116310462030-2​ | นายพิสิษฐ์ กองแก้ว      |https://github.com/pphisitC|
+| 5 | 116310462030-2​ | นายพิสิษฐ์ กองแก้ว      |https://github.com/pphisit|
 
 
 วิธีการติดตั้ง Nagios บน ubuntu วิธีการติดตั้งมีขั้นตอนดังนี้
