@@ -152,52 +152,17 @@ sudo apt install autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk d
 ```
 ![6db2ec87-0646-4ffe-b703-6365e82d644a](https://user-images.githubusercontent.com/119097663/210223568-8b12aa0b-ccc9-4075-ae74-ea2745ac9492.jpg)
 
-2. ดาวน์โหลดและเปิดใช้งาน "ปลั๊กอิน Nagios"
+2. ดาวน์โหลดและเปิดใช้งาน nagios-plugins
 
 พิมพ์คำสั่ง 
 ```
 cd /tmp
 ```
-พิมพ์คำสั่ง
-```
-wget --no-check-certificate -O nagios-plugins.tar.gz
-```
-![31541dce-9617-491f-9664-91719c3f5554](https://user-images.githubusercontent.com/119097663/210223717-c6c1689e-bc28-47b6-97b2-a2d98d9db4be.jpg)
+/* แก้ไข คำสั่งและรูป*/
 
-พิมพ์คำสั่ง 
-```
-tar zxf nagios-plugins.tar.gz
-```
-![1a5deaa3-6417-4108-b381-8ff0bade8719](https://user-images.githubusercontent.com/119097663/210223849-1486481c-0846-4eb5-8187-fd4303ef3a30.jpg)
+3. รวบรวมและติดตั้ง nagios-plugins
 
-3. รวบรวมและติดตั้ง "ปลั๊กอิน Nagios"
-
-พิมพ์คำสั่ง 
-```
-cd /tmp/nagios-plugins-release-2.2.1/
-```
-
-พิมพ์คำสั่ง 
-```
-./tools/setup
-```
-![1a5deaa3-6417-4108-b381-8ff0bade8719](https://user-images.githubusercontent.com/119097663/210223849-1486481c-0846-4eb5-8187-fd4303ef3a30.jpg)
-
-พิมพ์คำสั่ง 
-```
-sudo ./configure
-```
-![cb3b6676-8f1c-490e-bbed-030e727a3206](https://user-images.githubusercontent.com/119097663/210224025-93bd57d8-c97d-46f9-8b6e-7ae91faf2b22.jpg)
-
-พิมพ์คำสั่ง 
-```
-sudo make
-```
-พิมพ์คำสั่ง 
-```
-sudo make instal
-```
-![38ee74da-768f-4b77-9ce4-3e091e75d471](https://user-images.githubusercontent.com/119097663/210224058-f7dc376f-aea5-4457-ad78-e3ad9c8caf36.jpg)
+/* แก้ไข คำสั่งและรูป*/
 
 เสร็จสิ้นขั้นตอนการติดตั้งปลั๊กอินของ Nagios
 
@@ -468,3 +433,4 @@ Host GroupsและService Groups จะเป็นการแบ่งแย
 
 หน้าNotifications จะแสดงการแจ้งเตือนผู้ติดต่อทั้งหมด
 ![สกรีนช็อต_25660107_143253](https://user-images.githubusercontent.com/119097660/211155959-b88e2f3c-dabc-4545-8cb3-bbe7f32d491c.png)
+
