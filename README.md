@@ -437,4 +437,4 @@ Host GroupsและService Groups จะเป็นการแบ่งแย
 
 =======
 ![สกรีนช็อต_25660107_143253](https://user-images.githubusercontent.com/119097660/211155959-b88e2f3c-dabc-4545-8cb3-bbe7f32d491c.png) 
->>>>>>> ec7a281ba26f98af3b92dd2d1a9b623ba03effe0
+
