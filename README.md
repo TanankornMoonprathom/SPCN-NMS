@@ -170,7 +170,7 @@ tar -xzvf nagios-plugins-2.3.3.tar.gz
 3. รวบรวมและติดตั้ง nagios-plugins
 พิมพ์คำสั่ง
 ```
-tar -xzvf nagios-plugins-2.3.3.tar.gz
+cd /nagios-plugins-2.3.3
 ```
 พิมพ์คำสั่ง
 ```
