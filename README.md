@@ -235,6 +235,7 @@ nano /usr/local/nagios/etc/objects/hosts.cfg
 ```
 
 ![cb3b6676-8f1c-490e-bbed-030e727a3206](https://user-images.githubusercontent.com/119097663/210224025-93bd57d8-c97d-46f9-8b6e-7ae91faf2b22.jpg)
+
 2. เพิ่ม hostgroup
 ```
 define hostgroup {
@@ -251,6 +252,7 @@ define hostgroup {
 ตัวอย่าง IP 172.31.1.234
 
 ![38ee74da-768f-4b77-9ce4-3e091e75d471](https://user-images.githubusercontent.com/119097663/210224058-f7dc376f-aea5-4457-ad78-e3ad9c8caf36.jpg)
+
 define host {
 
     use     linux-server    ; Name of host template to use
