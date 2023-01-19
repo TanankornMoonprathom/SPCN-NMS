@@ -201,7 +201,7 @@ define hostgroup {
  ใส่ IP Address ในช่อง address 
 
 
-ตัวอย่าง IP 172.31.1.206,172.31.0.81 และ 172.31.1.234
+ตัวอย่าง IP 172.31.1.17,172.31.0.81 และ 172.31.1.234
 
 
 ```
@@ -211,7 +211,7 @@ define host {
                                               ; in (or inherited by) the linux-server host template >
     host_name               Client1
     alias                   Client1
-    address                 172.31.1.206
+    address                 172.31.1.17
     hostgroups              client
 }
 define host {
@@ -235,7 +235,7 @@ define host {
 }
 ```
 
-4. เพิ่ม service ในการทดสอบ PING,SMTP,POP3,IMAP,apache,SNMP
+4. เพิ่ม service ในการทดสอบ PING,apache,SNMP
 ```
 define service {
     use                     generic-service           ; Name of host template to use
@@ -250,24 +250,7 @@ define service {
     notification_interval 2
     notifications_enabled 1
 }
- define service {
-        use                  generic-service
-        host_name            Client1
-        service_description  SMTP
-        check_command        check_smtp
-    }
-define service {
-        use                  generic-service
-        host_name            Client1
-        service_description  POP3
-        check_command        check_pop
-    }
-    define service {
-        use                  generic-service
-        host_name            Client1
-        service_description  IMAP
-        check_command        check_imap
-    }
+
      define service {
         use                  generic-service
         host_name            Client1
@@ -283,24 +266,19 @@ define service {
         retry_interval          1
     }
 
- define service {
-        use                  generic-service
-        host_name            Client2
-        service_description  SMTP
-        check_command        check_smtp
-    }
-  define service {
-        use                  generic-service
-        host_name            Client2
-        service_description  POP3
-        check_command        check_pop
-    }
-    define service {
-        use                  generic-service
-        host_name            Client2
-        service_description  IMAP
-        check_command        check_imap
-    }
+define service {
+    use                     generic-service           ; Name of host template to use
+    host_name               Client2
+    service_description     check PING
+    check_command           check_ping!100.0,20%!500.0,60%
+    check_interval          1
+    retry_interval          1
+    check_period 24x7
+    check_freshness 1
+    contact_groups admins
+    notification_interval 2
+    notifications_enabled 1
+}
      define service {
         use                  generic-service
         host_name            Client2
@@ -349,9 +327,61 @@ systemctl restart nagios
 
 7. เข้าที่ Services 
 
-![Service Status](https://user-images.githubusercontent.com/109591322/211183583-f049cf2c-7da5-42d4-8d14-b5031cf72639.png)
+![Service Status](https://user-images.githubusercontent.com/109591322/213350964-4ee42fa2-17e6-4ba3-822b-4b5c65f8148a.png)
+
+# Service Groups
+## วิธีการเพิ่ม Service Groups
+
+1. แก้ไขไฟล์  servicegroups.cfg โดยใช้คำสั่ง
+```
+nano /usr/local/nagios/etc/objects/servicegroups.cfg 
+``` 
+
+2. เพิ่มชื่อ servicegroups ที่ต้องการ เช่น snmp
+```
+define servicegroup {
+    servicegroup_name  snmp
+    alias              snmp services
+}
+```
+3. บันทึก
+
+4. แก้ไขไฟล์ hosts.cfg โดยใช้คำสั่ง
+```
+nano /usr/local/nagios/etc/objects/hosts.cfg 
+```
+
+5. เพิ่มคำสั่งด้านล่างที่ define service ของ SNMP
+```
+servicegroups snmp
+```
+
+ตัวอย่าง 
+
+```
+define service {
+        use                  generic-service
+        host_name            Host .0.81
+        service_description  SNMP
+        check_command    check_snmp!-C SPcnCPE22 -o .1.3.6.1.4.1.2021.10.1.3.1
+        servicegroups snmp
+}
+```
+6. บันทึก และ restart nagios
+โดยใช้คำสั่ง
+``` 
+systemctl restart nagios
+```
+
+7. ตรวจสอบที่
+```
+172.31.0.210/nagios
+``` 
+
+8. เข้าที่ servicegroups เพิ่มตรวจสอบว่าได้เพิ่มถูกต้องหรือไม่
 
 
+![Service Status](https://user-images.githubusercontent.com/109591322/213353760-023c7cf3-365d-46e6-baba-f8380984ee34.png)
 
 # Client
 ## การติดตั้งใน Client ประกอบไปด้วย 
@@ -403,7 +433,7 @@ _ตัวอย่าง หน้าจอผลลัพธ์การทำ
 
 ## การอ่านผลของเครื่องมือ
 สามารถดูภาพรวมของHost StatusและService Status ผ่านหน้า Services 
-![สกรีนช็อต_25660107_142419](https://user-images.githubusercontent.com/119097660/211141883-355bc75f-1721-4404-b695-9d2d9a0f2eb7.png)
+![Service Status](https://user-images.githubusercontent.com/109591322/213350964-4ee42fa2-17e6-4ba3-822b-4b5c65f8148a.png)
 
 สามารถดูภาพรวมของHost StatusและService Status ผ่านหน้า Services
 
